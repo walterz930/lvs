@@ -9,10 +9,9 @@ void bluetooth_service_init() {
   // Create a new server
   NimBLEServer *pServer = NimBLEDevice::createServer();
 
-  NimBLEAdvertising *pAdvertising = NimBLEDevice::getAdvertising();
-  pAdvertising->setScanResponse(true);
-  pAdvertising->setMinPreferred(0x12);
-  pAdvertising->setMinPreferred(0x02);
+  // NimBLE-Arduino 2.x manages advertising parameters differently from 1.x.
+  // The old setScanResponse()/setMinPreferred() APIs are no longer available.
+  // Service UUIDs are added by lovense_init() before advertising starts.
 }
 
 void bluetooth_service_start() {
